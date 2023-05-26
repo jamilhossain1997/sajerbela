@@ -73,9 +73,7 @@ const nosidebar = (props) => {
                     <Container>
                         <Row>
                             <Col lg={9} md={12} className="order-lg-1">
-                                {/* <Topbar productdata={this.state.pro.length} /> */}
                                 <Row>
-
                                     {(pro.length > 0) ?
                                         <>
                                             {pro?.slice(0, visible).map((product, index) => (
@@ -90,7 +88,6 @@ const nosidebar = (props) => {
                                             </Row>
                                         </Col>
                                     }
-
                                 </Row>
                                 <div className="d-grid mt-3 mb-5 justify-content-center text-center">
                                     {isCompleted ? (

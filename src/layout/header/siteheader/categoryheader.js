@@ -111,8 +111,6 @@ const categoryheader = () => {
                 </Container>
             </DropdownMenu >
         </UncontrolledDropdown>
-
-
     );
 }
 

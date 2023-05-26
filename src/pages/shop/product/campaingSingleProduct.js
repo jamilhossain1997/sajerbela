@@ -270,7 +270,7 @@ const campaingSingleProduct = () => {
                                                                     <Col className="mx-1" style={{
                                                                         width: '4rem'
                                                                     }} xs={2} xl={2} lg={4} md={4}>
-                                                                        <img onClick={() => setImgShow(image)} className="img-fluid w-100" src={`${imgUrl}storage/app/public/product/${image}`} alt="hello" />
+                                                                        <img onClick={() => setImgShow(image)} className="img-fluid w-100" src={`${imgUrl}storage/app/public/product/${image}`} alt={SelectedProduct.name} />
                                                                     </Col>
 
                                                                 )

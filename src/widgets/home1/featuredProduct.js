@@ -16,7 +16,7 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 
 
 const featuredpi = async () => {
-    const result = await apiClient.get(`/v1/products/featured`);
+    const result = await apiClient.get(`v1/products/featuredWeb`);
     return result.data;
 };
 const featuredProduct = () => {
@@ -32,7 +32,7 @@ const featuredProduct = () => {
     // LoadMore
     const loadMore = () => {
         setVisible((prev) => prev + 8);
-        if (visible >= data?.products?.length) {
+        if (visible >= data?.length) {
             setIsCompleted(true)
         } else {
             setIsCompleted(false)
@@ -168,7 +168,7 @@ const featuredProduct = () => {
             <div className="shadow p-sm-4 p-2 bg-white">
                 <Row>
                     <ToastContainer autoClose={900} />
-                    {data?.products?.slice(0, visible).map((productdata) => {
+                    {data?.slice(0, visible).map((productdata) => {
                         return (
                             <React.Fragment key={productdata.id}>
                                 <Col xs={6} xl={3} lg={4} md={6} >
@@ -190,8 +190,8 @@ const featuredProduct = () => {
                                         {
                                             productdata.thumbnail ?
                                                 <Link className="card-img-hover d-block" to={`/product-single/${productdata.slug}`}>
-                                                    <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/${productdata.images[0]}`} alt="hello" />
-                                                    <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
+                                                    <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata?.thumbnail}`} alt="hello" />
+                                                    <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata?.thumbnail}`} alt="hello" />
                                                 </Link>
                                                 : <Skeleton count={3} />
                                         }

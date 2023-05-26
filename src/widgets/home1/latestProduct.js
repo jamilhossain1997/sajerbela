@@ -11,7 +11,7 @@ import imgUrl from "../../api/baseUrl";
 import { RiShoppingBag3Line } from "react-icons/ri";
 
 const latestapi = async () => {
-    const result = await apiClient.get(`/v1/products/latest`);
+    const result = await apiClient.get(`/v1/products/latestWeb`);
     return result.data;
 };
 const latestProduct = () => {
@@ -27,7 +27,7 @@ const latestProduct = () => {
     // LoadMore
     const loadMore = () => {
         setVisible((prev) => prev + 8);
-        if (visible >= data?.products?.length) {
+        if (visible >= data?.length) {
             setIsCompleted(true)
         } else {
             setIsCompleted(false)
@@ -155,7 +155,7 @@ const latestProduct = () => {
             <div className="shadow p-sm-4 p-2 bg-white">
                 <Row>
                     <ToastContainer autoClose={900} />
-                    {data?.products?.slice(0, visible).map((productdata, index) => {
+                    {data?.slice(0, visible).map((productdata, index) => {
                         return (
                             <Col xs={6} xl={3} lg={4} md={6} key={index}>
                                 <div className="card product-card">
@@ -179,7 +179,7 @@ const latestProduct = () => {
                                     {
                                         productdata.thumbnail ?
                                             <Link className="card-img-hover d-block" to={`/product-single/${productdata.slug}`}>
-                                                <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/${productdata.images[0]}`} alt="hello" />
+                                                <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
                                                 <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
                                             </Link>
                                             : <Skeleton count={3} />
