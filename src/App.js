@@ -34,6 +34,7 @@ import Faq from './pages/common/faq';
 import about from './pages/common/about';
 import privacyPolicy from './pages/common/privacy-policy';
 import ReactPixel from 'react-facebook-pixel';
+import LandPages from './pages/LandingPages/index';
 
 import CustomerChat from './pages/account/CustomerChat';
 // import FacebookPixel from './pages/account/FacebookPixel';
@@ -83,11 +84,13 @@ class App extends React.Component {
             <Route path="/sign-up" component={singup} />
             <Route path="/forgot-password" component={forgotpassword} />
             {/* Shop Pages */}
+
             <Route exact path="/grid-left-sidebar/:id" component={leftsidebar} />
-            <Route path="/category/:id" component={nosidebar} />
+            <Route path="/category/slug::id" component={nosidebar} />
             <Route path="/discontproduct" component={fullsidebar} />
             <Route path={`/product-single/:slug`} component={productsingle} />
             <Route path={`/product-single-campaing/:slug/:id`} component={CampaingSingleProduct} />
+            <Route path="/:slug" component={LandPages} />
             <Route path="/wishlist" component={wishlist} />
             <Route path="/order-complate" component={ordercomplate} />
             <Route path="/orderVioew" component={OrderView} />

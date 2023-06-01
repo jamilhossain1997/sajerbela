@@ -58,13 +58,13 @@ const categoryheader = () => {
                         {brand?.map((branditem) => (
                             <React.Fragment key={branditem.slug}>
                                 <Col xs={12} md={3} >
-                                    <DropdownToggle nav tag="div" ><a href={`/category/${branditem.slug}`} >
+                                    <DropdownToggle nav tag="div" ><a href={`/category/slug:${branditem.slug}`} >
                                         <img className='rounded' style={{ maxHeight: "40px", width: "40px" }} src={`${imgUrl}storage/app/public/category/${branditem.icon}`} alt="Sajerbela" />
                                         <span className='m-2'><b>{branditem.name}</b></span>
                                     </a></DropdownToggle>
                                     {branditem?.childes?.map((subcat) => (
                                         <React.Fragment key={subcat.slug}>
-                                            <ul href={`/category/${subcat.slug}`}>
+                                            <ul href={`/category/slug:${subcat.slug}`}>
 
                                                 <Accordion allowZeroExpanded>
                                                     <AccordionItem>
@@ -73,12 +73,12 @@ const categoryheader = () => {
                                                                 subcat.childes.length > 0 ?
                                                                     <AccordionItemHeading>
                                                                         <AccordionItemButton>
-                                                                            <a href={`/category/${subcat.slug}`} >
+                                                                            <a href={`/category/slug:${subcat.slug}`} >
                                                                                 {subcat.name}
                                                                             </a>
                                                                         </AccordionItemButton>
                                                                     </AccordionItemHeading> :
-                                                                    <a href={`/category/${subcat.slug}`} >
+                                                                    <a href={`/category/slug:${subcat.slug}`} >
                                                                         {subcat.name}
                                                                     </a>
                                                             }
@@ -90,7 +90,7 @@ const categoryheader = () => {
                                                                     subcat?.childes?.map((subsubcat, i) => (
                                                                         <React.Fragment key={subsubcat.slug}>
                                                                             <li key={i} style={{ listStyleType: `square` }} className='fs-4 ml-5' href={`/category/${subsubcat.slug}`}>
-                                                                                <a href={`/category/${subsubcat.slug}`} >
+                                                                                <a href={`/category/slug:${subsubcat.slug}`} >
                                                                                     {subsubcat.name}
                                                                                 </a>
                                                                             </li>

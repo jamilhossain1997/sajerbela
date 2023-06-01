@@ -34,7 +34,7 @@ const nosidebar = (props) => {
     useEffect(() => {
         window.scrollTo(0, 0)
         let category_slug = props.match.params.id;
-        // console.log(this.props.match.params.id)
+        console.log(category_slug)
         apiClient.get(`v1/categories/products_slug/${category_slug}`)
             .then(res => {
                 setPro(res.data);

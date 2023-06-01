@@ -27,6 +27,7 @@ import Userheader from './siteheader/userheader';
 import Brandheader from './siteheader/brandheader';
 import Categoryheader from './siteheader/categoryheader';
 import { toast, ToastContainer } from 'react-toastify';
+import OfferHeader from './siteheader/offerHeader';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
@@ -125,20 +126,12 @@ class Header extends Component {
                     <Helmet>
                         <meta property="og:image" content="https://admin.sajerbela.com/storage/app/public/company/2023-03-31-6426dc9918aaa.png" />
                         <meta property="og:url" content="https://sajerbela.com/" />
-                        <meta
-                            property="og:description"
-                            content="<p>বিসমিল্লাহির রাহমানির রাহিম<br />
-ব্যত"
-                        />
+
 
                         <meta property="twitter:card" content="https://admin.sajerbela.com/storage/app/public/company/2023-03-31-6426dc9918aaa.png" />
                         <meta property="twitter:title" content="Welcome To Sajer Bela Home" />
                         <meta property="twitter:url" content="https://sajerbela.com/" />
-                        <meta
-                            property="twitter:description"
-                            content="<p>বিসমিল্লাহির রাহমানির রাহিম<br />
-ব্যত"
-                        />
+
                         <meta name="facebook-domain-verification" content="ys1347xan857sapi97hdpyloyb1ppr" />
                     </Helmet>
                     <>
@@ -162,6 +155,7 @@ class Header extends Component {
 
                                                         <Categoryheader />
                                                         <Brandheader toggle={this.toggle} />
+                                                        <OfferHeader toggle={this.toggle} />
                                                         <NavItem onClick={this.toggle}>
                                                             <NavLink tag={Link} to="/campaign" style={{ textTransform: `uppercase` }}>Campaign</NavLink>
                                                         </NavItem>

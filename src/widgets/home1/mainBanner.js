@@ -18,10 +18,10 @@ const mainBanner = () => {
                 <div className="position-relative rounded overflow-hidden text-right shadow-sm">
                     {/* Background */}
                     {
-                        footer.map((item) =>
+                        footer?.map((item) =>
                         (
                             <React.Fragment key={item.id}>
-                                <a href={`${item.url}`} >
+                                <Link to={`/category/slug:${item.url}`}>
                                     <img className="img-fluid hover-zoom" src={`${imgUrl}/storage/app/public/banner/${item.photo}`} alt="" />
                                     {/* Body */}
                                     <div className="position-absolute top-50 pl-5 text-left">
@@ -30,7 +30,7 @@ const mainBanner = () => {
                                         {/* <h3><span className="font-w-7 text-primary d-block">50% OFF</span> Popular Items!</h3> */}
 
                                     </div>
-                                </a>
+                                </Link>
                             </React.Fragment>
                         )
                         )

@@ -147,7 +147,7 @@ const footer1 = () => {
 
                                     categories.map((cat, i) => (
                                         <ul className="navbar-nav list-unstyled mb-0" key={i}>
-                                            <li className="mb-3 nav-item"><Link className="nav-link" to={`/catgory/${cat.id}`}>{cat.name}</Link></li>
+                                            <li className="mb-3 nav-item"><Link className="nav-link" to={`/category/slug:${cat.slug}`}>{cat.name}</Link></li>
 
                                         </ul>
                                     ))

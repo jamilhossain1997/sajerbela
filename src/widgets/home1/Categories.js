@@ -94,7 +94,7 @@ const Categories = () => {
                             <React.Fragment key={productdata.id}>
                                 <div key={productdata.id}>
                                     <div className="item" >
-                                        <Link to={`/category/${productdata.slug}`} >
+                                        <Link to={`/category/slug:${productdata.slug}`} >
                                             <div className="card">
                                                 <img className="rounded" src={`${imgUrl}storage/app/public/category/${productdata.icon}`} alt={`${productdata.name}`} style={{ height: `170.5px` }} />
                                             </div>
