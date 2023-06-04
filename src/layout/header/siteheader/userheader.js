@@ -73,7 +73,7 @@ const userheader = () => {
 
                     </DropdownToggle>
                     <DropdownMenu className="childsubmenu" style={{ overflowY: 'scroll', maxHeight: "200px" }}>
-                        <DropdownItem style={{ padding: `15px` }} tag={Link} to={`/orderVioew`}>Order</DropdownItem>
+                        <DropdownItem style={{ padding: `15px` }} tag={Link} to={`/orderView`}>Order</DropdownItem>
                         <DropdownItem style={{ padding: `15px` }} tag={Link} to={`/userProfile`}>My Profile</DropdownItem>
                         <DropdownItem style={{ padding: `15px` }} onClick={handleLogout} tag={Link} to={`/sign-in`}>Logout</DropdownItem>
                     </DropdownMenu>

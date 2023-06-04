@@ -90,10 +90,11 @@ class App extends React.Component {
             <Route path="/discontproduct" component={fullsidebar} />
             <Route path={`/product-single/:slug`} component={productsingle} />
             <Route path={`/product-single-campaing/:slug/:id`} component={CampaingSingleProduct} />
-            <Route path="/:slug" component={LandPages} />
+
             <Route path="/wishlist" component={wishlist} />
             <Route path="/order-complate" component={ordercomplate} />
-            <Route path="/orderVioew" component={OrderView} />
+            <Route path="/orderView" component={OrderView} />
+            <Route path="/:slug" component={LandPages} />
             <Route path="*" component={pagenotfound} />
           </Switch>
           <Footer1 />
