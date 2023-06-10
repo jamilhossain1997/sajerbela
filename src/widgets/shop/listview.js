@@ -299,8 +299,7 @@ const listview = (props) => {
                         <div className="col-lg-7 col-12 mt-5 mt-lg-0">
                             <div className="product-details">
                                 <h3 className="mb-0" style={{ fontSize: `16px` }}> {viewproduct.name}</h3>
-                                <div className="star-rating mb-4"><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" />
-                                </div>
+
                                 <span className="product-price h4">
                                     <span className="product-price">
 

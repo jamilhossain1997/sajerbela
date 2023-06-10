@@ -22,7 +22,7 @@ const featuredpi = async () => {
 const featuredProduct = () => {
     const [activeTab, setActiveTap] = useState(1);
     const [modelview, setModelview] = useState(false);
-    const [viewproduct, setViewproduct] = useState("");
+    const [viewproduct, setViewproduct] = useState('');
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const { isLoading, error, data } = useQuery("featuredpi1", featuredpi);
@@ -306,25 +306,20 @@ const featuredProduct = () => {
                 </div>
             </div>
 
-            <Modal isOpen={modelview} toggle={modelview} className="view-modal" style={{ maxWidth: '900px', width: '60%' }}>
+            <Modal isOpen={modelview} toggle={modelview} className="view-modal" size="lg" style={{ maxWidth: '900px', width: '60%' }}>
                 <ToastContainer autoClose={900} />
-                <ModalHeader className="border-bottom-0 pb-0">
+                <ModalHeader className="border-bottom-0 pb-0 ">
                     <Button color="danger" onClick={() => quickview()} ><span aria-hidden="true">×</span></Button>
                 </ModalHeader>
                 <ModalBody>
-
                     <Row className="align-items-center">
-
                         <div className="col-lg-5 col-12">
                             <img className="img-fluid rounded" src={`${imgUrl}storage/app/public/product/thumbnail/${viewproduct.thumbnail}`} alt="hello" />
                         </div>
-
                         <div className="col-lg-7 col-12 mt-5 mt-lg-0">
                             <div className="product-details">
-                                <h3 className="mb-0" style={{ fontSize: `16px` }}>{viewproduct.name}</h3>
+                                <h3 className="mb-0" style={{ fontSize: `16px` }}> {viewproduct.name}</h3>
 
-                                <div className="star-rating mb-4"><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" />
-                                </div>
                                 <span className="product-price h4">
                                     <span className="product-price">
 
@@ -354,8 +349,7 @@ const featuredProduct = () => {
                                 <ul className="list-unstyled my-4">
                                     <li className="mb-2">Availibility: <span className="text-muted"> {viewproduct.current_stock}</span>
                                     </li>
-                                    {/* <li>Categories :<span className="text-muted"> {viewproduct.category}</span>
-</li> */}
+
                                 </ul>
                                 <p className="mb-4">{viewproduct.description}</p>
                                 <div className="d-sm-flex align-items-center mb-5">
@@ -366,69 +360,19 @@ const featuredProduct = () => {
                                         <button className="btn-product btn-product-down"> <i className="las la-plus" />
                                         </button>
                                     </div>
-                                </div>
-                                {/* color & Size */}
-                                <div className="d-sm-flex align-items-center mb-3">
-                                    {viewproduct?.choice_options?.map((sizes, index) => {
 
-                                        return (
-                                            <>
-                                                {
-                                                    sizes.options ? <>
-                                                        <p className='mr-3' style={{ marginTop: `10px` }}>Size:</p>
-                                                        <select className="custom-select mt-3 mt-sm-0" style={{ width: `70px` }}>
-                                                            {sizes.options.map((options, index) =>
-                                                                <option key={index}>{options}</option>)}
-                                                        </select>
-
-                                                    </> : null
-
-                                                }
-                                            </>
-
-                                        )
-
-                                    }
-                                    )}
-                                </div>
-
-
-                                <div className="d-flex text-center ml-sm-4 mt-3 mt-sm-0" id="inputGroupSelect02">
-                                    {
-                                        viewproduct?.colors == '' ? <>
-                                        </> : <><span className='mr-3'>Color:</span></>
-                                    }
-                                    {viewproduct?.colors?.map((color, index) => {
-
-                                        return (
-                                            <>
-                                                {
-                                                    color.code ?
-                                                        <> <div className="form-check pl-0 mr-3">
-                                                            <input type="checkbox" value={color.name} id={`color-filter${index}`} className="form-check-input" checked={selectedColor === color.name}
-                                                                onChange={onChangeColor} />
-                                                            <label className="form-check-label" htmlFor={`color-filter${index}`} style={{ background: `${color.code}` }} />
-                                                        </div></> : null
-                                                }
-
-                                            </>
-                                        )
-                                    }
-                                    )}
                                 </div>
 
                                 <div className="d-sm-flex align-items-center mt-5">
-
                                     {!CartItems(viewproduct.id) ?
-                                        <Link to="#" onClick={() => Productaddcart(viewproduct.id, viewproduct.name, viewproduct.thumbnail, viewproduct.min_qty, (viewproduct.unit_price - (viewproduct?.discount_type == 'percent' ? ((viewproduct?.unit_price * viewproduct?.discount) / 100) : viewproduct.discount)), viewproduct.current_stock)} className="btn btn-primary btn-animated mr-sm-4 mb-3 mb-sm-0" rel="nofollow" ><i className="las la-shopping-cart mr-1" />Add To Cart</Link>
+                                        <Link to="#" onClick={() => Productaddcart(productdata.id, productdata.name, productdata.thumbnail, productdata.min_qty, (productdata.unit_price - (productdata?.discount_type == 'percent' ? ((productdata?.unit_price * productdata?.discount) / 100) : productdata.discount)), (productdata?.discount_type == 'percent' ? ((productdata?.unit_price * productdata?.discount) / 100) : productdata.discount), productdata.current_stock)} className="btn btn-primary btn-animated mr-sm-4 mb-3 mb-sm-0" rel="nofollow" ><i className="las la-shopping-cart mr-1" />Add To Cart</Link>
                                         :
                                         <Link to="/OneStepCheck" className="btn btn-primary btn-animated mr-sm-4 mb-3 mb-sm-0" rel="nofollow" id="viewcart1"><i className="las la-shopping-cart mr-1" />view cart</Link>
 
                                     }
 
 
-                                    <Link to="/OneStepCheck" onClick={() => Productaddcart(viewproduct.id, viewproduct.name, viewproduct.thumbnail, viewproduct.min_qty, (viewproduct.unit_price - (viewproduct?.discount_type == 'percent' ? ((viewproduct?.unit_price * viewproduct?.discount) / 100) : viewproduct.discount)), viewproduct.current_stock)} className="btn btn-primary btn-animated mr-sm-4 mb-3 mb-sm-0" rel="nofollow" ><i className="las la-shopping-cart mr-1" />Buy Now</Link>
-
+                                    <Link to="/OneStepCheck" onClick={() => Productaddcart(productdata.id, productdata.name, productdata.thumbnail, productdata.min_qty, (productdata.unit_price - (productdata?.discount_type == 'percent' ? ((productdata?.unit_price * productdata?.discount) / 100) : productdata.discount)), (productdata?.discount_type == 'percent' ? ((productdata?.unit_price * productdata?.discount) / 100) : productdata.discount), productdata.current_stock)} className="btn btn-primary btn-animated mr-sm-4 mb-3 mb-sm-0" rel="nofollow" ><i className="las la-shopping-cart mr-1" />Buy Now</Link>
 
                                 </div>
                                 <div className="d-sm-flex align-items-center border-top pt-4 mt-5">

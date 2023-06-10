@@ -309,8 +309,7 @@ const latestProduct = () => {
                             <div className="product-details">
                                 <h3 className="mb-0" style={{ fontSize: `16px` }}>{viewproduct.name}</h3>
 
-                                <div className="star-rating mb-4"><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" /><i className="las la-star" />
-                                </div>
+
                                 <span className="product-price h4">
                                     <span className="product-price">
 
@@ -353,55 +352,7 @@ const latestProduct = () => {
                                         </button>
                                     </div>
                                 </div>
-                                {/* color & Size */}
-                                <div className="d-sm-flex align-items-center mb-3">
-                                    {viewproduct?.choice_options?.map((sizes, index) => {
 
-                                        return (
-                                            <>
-                                                {
-                                                    sizes.options ? <>
-                                                        <p className='mr-3' style={{ marginTop: `10px` }}>Size:</p>
-                                                        <select className="custom-select mt-3 mt-sm-0" style={{ width: `70px` }}>
-                                                            {sizes.options.map((options, index) =>
-                                                                <option key={index}>{options}</option>)}
-                                                        </select>
-
-                                                    </> : null
-
-                                                }
-                                            </>
-
-                                        )
-
-                                    }
-                                    )}
-                                </div>
-
-
-                                <div className="d-flex text-center ml-sm-4 mt-3 mt-sm-0" id="inputGroupSelect02">
-                                    {
-                                        viewproduct?.colors == '' ? <>
-                                        </> : <><span className='mr-3'>Color:</span></>
-                                    }
-                                    {viewproduct?.colors?.map((color, index) => {
-
-                                        return (
-                                            <>
-                                                {
-                                                    color.code ?
-                                                        <> <div className="form-check pl-0 mr-3">
-                                                            <input type="checkbox" value={color.name} id={`color-filter${index}`} className="form-check-input" checked={selectedColor === color.name}
-                                                                onChange={onChangeColor} />
-                                                            <label className="form-check-label" htmlFor={`color-filter${index}`} style={{ background: `${color.code}` }} />
-                                                        </div></> : null
-                                                }
-
-                                            </>
-                                        )
-                                    }
-                                    )}
-                                </div>
 
                                 <div className="d-sm-flex align-items-center mt-5">
 

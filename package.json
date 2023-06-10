@@ -1,7 +1,7 @@
 {
   "name": "sajerbela-react",
   "version": "0.1.0",
-  "private": false,
+  "private":true,
   "homepage": "https://sajerbela.com/",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -64,7 +64,7 @@
     "webpack-cli": "^5.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --open --mode production",
     "build": "set \"GENERATE_SOURCEMAP=false\" && webpack --config ./webpack.config.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
