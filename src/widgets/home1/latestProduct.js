@@ -179,8 +179,8 @@ const latestProduct = () => {
                                     {
                                         productdata.thumbnail ?
                                             <Link className="card-img-hover d-block" to={`/product-single/${productdata.slug}`}>
-                                                <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
-                                                <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
+                                                <LazyLoadImage className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
+                                                <LazyLoadImage className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
                                             </Link>
                                             : <Skeleton count={3} />
                                     }

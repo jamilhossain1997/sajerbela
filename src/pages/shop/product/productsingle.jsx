@@ -226,9 +226,11 @@ const productsingle = () => {
                   <div className="col-lg-6 col-12" style={{ zIndex: `91` }}>
                     {
                       SelectedProduct.video_url ? <>
-                        <div style={{ width: `100%`, height: `60%` }} >
-                          <FacebookEmbed url={SelectedProduct.video_url} />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                          <FacebookEmbed url={SelectedProduct.video_url} width={325}
+                            height={670} />
                         </div>
+
                         {/* <ReactPlayer width="500" url={SelectedProduct.video_url} /> */}
 
                       </> : <>

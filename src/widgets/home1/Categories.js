@@ -10,7 +10,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "react-query";
 import apiClient from "../../api/http-common";
 import imgUrl from "../../api/baseUrl";
-import axios from "axios";
+
 
 // const categorapi = async () => {
 //     const result = await apiClient.get(`/v1/categories/`);
@@ -96,7 +96,7 @@ const Categories = () => {
                                     <div className="item" >
                                         <Link to={`/category/slug:${productdata.slug}`} >
                                             <div className="card">
-                                                <img className="rounded" src={`${imgUrl}storage/app/public/category/${productdata.icon}`} alt={`${productdata.name}`} style={{ height: `170.5px` }} />
+                                                <LazyLoadImage className="rounded" src={`${imgUrl}storage/app/public/category/${productdata.icon}`} alt={`${productdata.name}`} style={{ height: `170.5px` }} />
                                             </div>
                                         </Link>
                                         <h5 className="card-title text-center" style={{ fontSize: `14px` }}> {productdata.name}</h5>

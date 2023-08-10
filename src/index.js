@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import { createStore, applyMiddleware, compose } from 'redux';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://admin.sajerbela.com/api';
+axios.defaults.baseURL = 'https://nextjs.sajerbela.com/api';
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 const queryClient = new QueryClient()
 

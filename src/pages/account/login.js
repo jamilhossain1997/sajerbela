@@ -19,9 +19,7 @@ const login = () => {
                 localStorage.setItem('token', res.data.token);
                 const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1 hour in milliseconds
                 localStorage.setItem('expirationTime', expirationTime);
-                setTimeout(function () {
-                    window.location.reload()
-                }, 100);
+
                 history.push('/OneStepCheck');
                 // history.goBack();
             })
@@ -66,7 +64,7 @@ const login = () => {
                                                 <div className="help-block with-errors" />
                                             </div>
                                             <div className="form-group mt-4 mb-5">
-                                            </div> <a href='/cart'><input type="submit" className="btn btn-primary btn-block" /></a>
+                                            </div> <input type="submit" className="btn btn-primary btn-block" />
                                         </form>
                                         <div className="d-flex align-items-center text-center justify-content-center mt-4">
                                             <span className="text-muted mr-1">Don't have an account?</span>

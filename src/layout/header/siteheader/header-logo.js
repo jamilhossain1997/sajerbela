@@ -1,19 +1,21 @@
-
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import Search from './Search';
-import axios from 'axios';
 import apiClient from '../../../api/http-common';
 import imgUrl from '../../../api/baseUrl';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Headerlogo = () => {
     const [logo, setLogo] = useState([]);
     const [phone, setPhone] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         apiClient.get(`/v1/company-info`)
             .then(res => {
                 setLogo(res.data)
+                setIsLoading(false)
             })
     }, [logo])
 
@@ -24,7 +26,18 @@ const Headerlogo = () => {
             })
     }, [])
 
+    if (isLoading) return (
+        <>
+            <Container>
+                <Row>
+                    <div className="col-12">
+                        <Skeleton height={500} />
+                    </div>
+                </Row>
+            </Container>
+        </>
 
+    )
     return (
         <div className="py-md-3 py-2">
             <Container>

@@ -30,35 +30,28 @@ const oneStepCheck = () => {
     const [payment, setPayment] = useState('');
     // const [shippingPost,setShippingPost]=useState('')
     const [cartList, setCartList] = useState([])
+    const [cartListAll, setCartListAll] = useState([])
     const history = useHistory()
     // Address
     const [collapse, SetCollapse] = useState(false);
-
     useEffect(() => {
-        apiClient.delete(`v1/cart/remove-all`)
-            .then(res => {
-                console.log(res)
-            })
-    }, []);
-
-    function GetCartItems() {
-        var ItemCart = JSON.parse(localStorage.getItem("CartProduct"));
-        if (ItemCart == null) {
-            setTimeout(function () {
-                window.location.reload()
-            }, 1000);
-            history.push(`/`)
+        if (localStorage.getItem('token')) {
+            history.push('/OneStepCheck');
+        } else {
+            history.push('/otpLogin');
         }
-        return ItemCart;
-    }
+    }, [])
+    // useEffect(() => {
+    //     apiClient.delete(`v1/cart/remove-all`)
+    //         setTimeout(function () {
+    //             window.location.reload()
+    //         }, 1000)
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    // }, []);
 
-    const RemoveItem = (Index) => {
-        var CartValue = JSON.parse(localStorage.getItem("CartProduct"));
-        CartValue = CartValue.slice(0, Index).concat(CartValue.slice(Index + 1, CartValue.length));
-        localStorage.removeItem("CartProduct");
-        localStorage.setItem("CartProduct", JSON.stringify(CartValue));
-        window.location.reload();
-    }
+
     function toggle() {
         SetCollapse(!collapse);
         // this.setState({ collapse: !this.state.collapse });
@@ -74,17 +67,50 @@ const oneStepCheck = () => {
         GetCartItems()
     }, []);
     useEffect(() => {
-        axios.get(`/v1/cart/cart`)
+        apiClient.get(`/v1/cart/cart`)
             .then((res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 setCartList(res.data)
             })
-    }, [cartList])
+    }, [cartList]);
+
+    useEffect(() => {
+        apiClient.get(`/v1/cart/allCart`)
+            .then((res) => {
+                console.log(res.data)
+                setCartListAll(res.data)
+                // localStorage.removeItem("CartProduct")
+            })
+    }, [cartListAll])
+
+
+
+    function GetCartItems() {
+        var ItemCart = cartListAll;
+        // if (ItemCart == null) {
+        //     setTimeout(function () {
+        //         window.location.reload()
+        //     }, 1000);
+        //     history.push(`/`)
+        // }
+        return ItemCart;
+    }
+
+
+
+    // console.log(GetCartItems());
+    const RemoveItem = (id) => {
+        apiClient.delete(`/v1/cart/Cartremove/${id}`)
+            .then((res) => {
+                console.log(res)
+                toast.success('Product Item delect')
+            })
+
+    }
 
     useEffect(() => {
         localStorage.setItem('shippingMethod', JSON.stringify(shippingMethod));
     }, [shippingMethod]);
-
     useEffect(() => {
         const product = prodata?.map((item) => item)
         const cat = [...product]
@@ -354,6 +380,7 @@ const oneStepCheck = () => {
                 .then(res => {
                     console.log(res.data);
 
+
                 })
                 .catch(err => {
                     console.log(err);
@@ -362,7 +389,7 @@ const oneStepCheck = () => {
         } else {
 
         }
-    }, [prodata])
+    }, [])
 
     const shippingOnChange = (id) => {
         setShippingMethod(id);
@@ -382,13 +409,7 @@ const oneStepCheck = () => {
 
     }
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            history.push('/OneStepCheck');
-        } else {
-            history.push('/otpLogin');
-        }
-    }, [])
+
 
     useEffect(() => {
         apiClient.get(`/v1/products/shipping-methods`)
@@ -457,7 +478,7 @@ const oneStepCheck = () => {
 
     }
     const convert = 0.011904761904762;
-    const Subtotal = (shippingMethod ? (Number(Math.round(GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.Qty * CartItem.Rate), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 }) / convert), 2) + Number(Math.round(shippingMethod?.cost / convert))) : (Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.Qty * CartItem.Rate), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)));
+    const Subtotal = (shippingMethod ? (Number(Math.round(GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.quantity * CartItem.price), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 }) / convert), 2) + Number(Math.round(shippingMethod?.cost / convert))) : (Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.quantity * CartItem.price), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)));
     return (
         <>
             <HelmetProvider>
@@ -495,48 +516,53 @@ const oneStepCheck = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {GetCartItems()?.map((CartItem, index) => (
-                                                    <tr>
-                                                        <td>
-                                                            <img className="img-fluid" src={`${imgUrl}storage/app/public/product/thumbnail/${CartItem.ProductImage}`} style={{ height: '100px' }} alt="" />
-                                                        </td>
-                                                        <td>
-                                                            <div className="media-body ml-3">
-                                                                <div className="product-title mb-2"><Link className="link-title" to="#">{CartItem.ProductName}</Link>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div className="media-body ml-3">
-                                                                <div className="product-title mb-2"><Link className="link-title" to="#">{Math.round(((CartItem.Rate) + (CartItem.Discount)) / convert, 2)}</Link>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div className="media-body ml-3">
-                                                                <div className="product-title mb-2"><Link className="link-title" to="#">{Math.round((CartItem.Discount) / convert, 2)}</Link>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div className="d-flex justify-content-center align-items-center">
-                                                                {CartItem?.Qty}
-                                                                {/* <Link className="btn-product btn-product-up" onClick={() => RemoveQty(index)}> <i className="las la-minus" />
+                                                {cartListAll?.map((CartItem, index) => {
+                                                    return (
+                                                        <>
+                                                            <tr>
+                                                                <td>
+                                                                    <img className="img-fluid" src={`${imgUrl}storage/app/public/product/thumbnail/${CartItem.thumbnail}`} style={{ height: '100px' }} alt="" />
+                                                                </td>
+                                                                <td>
+                                                                    <div className="media-body ml-3">
+                                                                        <div className="product-title mb-2"><Link className="link-title" to="#">{CartItem.name}</Link>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div className="media-body ml-3">
+                                                                        <div className="product-title mb-2"><Link className="link-title" to="#">{Math.round(((CartItem.price) + (CartItem.discount)) / convert, 2)}</Link>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div className="media-body ml-3">
+                                                                        <div className="product-title mb-2"><Link className="link-title" to="#">{Math.round((CartItem.discount) / convert, 2)}</Link>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div className="d-flex justify-content-center align-items-center">
+                                                                        {CartItem?.quantity}
+                                                                        {/* <Link className="btn-product btn-product-up" onClick={() => RemoveQty(index)}> <i className="las la-minus" />
                                                     </Link> */}
-                                                                {/* <input className="form-product" type="number" name="form-product" value={CartItem.Qty} /> */}
-                                                                {/* <Link className="btn-product btn-product-down" onClick={() => AddQty(index)}> <i className="las la-plus" />
+                                                                        {/* <input className="form-product" type="number" name="form-product" value={CartItem.Qty} /> */}
+                                                                        {/* <Link className="btn-product btn-product-down" onClick={() => AddQty(index)}> <i className="las la-plus" />
                                                     </Link> */}
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <span className="product-price text-dark font-w-6">
-                                                                ৳{Math.round((CartItem?.Rate * CartItem?.Qty).toLocaleString(navigator.language, { minimumFractionDigits: 0 }) / convert, 2)}
-                                                            </span>
-                                                            <Link type="submit" className="btn btn-primary btn-sm" onClick={() => RemoveItem(index)}><i className="las la-times" />
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
-                                                ))}
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <span className="product-price text-dark font-w-6">
+                                                                        ৳{Math.round((CartItem?.price * CartItem?.quantity).toLocaleString(navigator.language, { minimumFractionDigits: 0 }) / convert, 2)}
+                                                                    </span>
+                                                                    <Link type="submit" className="btn btn-primary btn-sm" onClick={() => RemoveItem(CartItem.id)}><i className="las la-times" />
+                                                                    </Link>
+                                                                </td>
+                                                            </tr>
+
+                                                        </>
+                                                    )
+                                                })}
                                             </tbody>
                                         </table>
                                     </ul>
@@ -546,13 +572,13 @@ const oneStepCheck = () => {
                                             <div>
                                                 <h6 class="my-0">Product Price</h6>
                                             </div>
-                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + ((CartItem.Qty * CartItem.Rate) + (CartItem.Qty * CartItem.Discount)), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
+                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + ((CartItem.quantity * CartItem.price) + (CartItem.quantity * CartItem.discount)), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
                                                 <h6 class="my-0">Discount</h6>
                                             </div>
-                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.Qty * CartItem.Discount), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
+                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.quantity * CartItem.discount), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
                                         </li>
 
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -560,7 +586,7 @@ const oneStepCheck = () => {
                                                 <h6 class="my-0">Subtotal</h6>
 
                                             </div>
-                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.Qty * CartItem.Rate), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
+                                            <span class="text-muted">৳ {Math.round((GetCartItems()?.reduce((fr, CartItem) => fr + (CartItem.quantity * CartItem.price), 0).toLocaleString(navigator.language, { minimumFractionDigits: 0 })) / convert, 2)}</span>
                                         </li>
 
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">

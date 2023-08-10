@@ -5,6 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
+  // mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: './src/index.js',
   output: {

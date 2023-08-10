@@ -147,7 +147,7 @@ const listview = (props) => {
                                     <Link className="card-img-hover d-block" to={`/product-single/${productdata.slug}`}>
                                         <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt={`${productdata.thumbnail}`} />
                                         <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt={`${productdata.thumbnail}`} />
-                                        <div style={{ zIndex: `9999`, marginTop: `-138px`, marginLeft: `80px` }}>
+                                        <div style={{ zIndex: `9999`, marginTop: `-138px`, marginLeft: `46px` }}>
                                             <BiCaretRightCircle size={70} />
                                         </div>
 

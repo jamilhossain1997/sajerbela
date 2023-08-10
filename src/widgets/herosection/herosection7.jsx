@@ -7,6 +7,7 @@ import apiClient from '../../api/http-common';
 import imgUrl from '../../api/baseUrl';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 window.fn = OwlCarousel;
 
@@ -48,7 +49,7 @@ const herosection7 = () => {
                                 {
 
 
-                                    item ? <Link to={`${item.url}`}><img className='d-block w-100' style={{ maxHeight: `620px` }} src={`${imgUrl}/storage/app/public/banner/${item.photo}`} alt='hello' /></Link>
+                                    item ? <Link to={`${item.url}`}><LazyLoadImage className='d-block w-100' style={{ maxHeight: `620px` }} src={`${imgUrl}/storage/app/public/banner/${item.photo}`} alt={`${imgUrl}/storage/app/public/banner/${item.photo}`} /></Link>
                                         : <Skeleton count={1} style={{ height: `300px` }} />
 
                                 }

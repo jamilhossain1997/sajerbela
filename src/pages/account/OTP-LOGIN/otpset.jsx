@@ -17,8 +17,6 @@ const otpset = () => {
                 setTimeout(function () {
                     window.location.reload()
                 }, 100);
-
-
                 history.push('/OneStepCheck');
                 toast.success(res.data.messages);
                 // history.goBack();

@@ -202,7 +202,7 @@ const footer1 = () => {
                 <Row className="text-muted align-items-center">
                     <Col md={7}> <i className="lar la-heart text-primary heartBeat2" /> <a className="text-primary" href="https://www.evertechit.com/">{copyRight.value}</a>
                     </Col>
-                    <Col md={5} className="text-md-right mt-3 mt-md-0">
+                    {/* <Col md={5} className="text-md-right mt-3 mt-md-0">
                         <ul className="list-inline mb-0">
                             <li className="list-inline-item">
                                 <Link to="#">
@@ -225,7 +225,7 @@ const footer1 = () => {
                                 </Link>
                             </li>
                         </ul>
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         </footer>

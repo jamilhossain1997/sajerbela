@@ -12,10 +12,7 @@ import { BiCaretRightCircle } from "react-icons/bi";
 window.fn = OwlCarousel;
 
 
-// const bestSeller = async () => {
-//     const result = await apiClient.get(`/v1/products/home-categories`)
-//     return result.data;
-// }
+
 class Newcollection extends React.Component {
 
 
@@ -235,7 +232,7 @@ class Newcollection extends React.Component {
                                                                                 <Link className="card-img-hover d-block" to={`/product-single/${productdata.slug}`}>
                                                                                     <img className="card-img-top card-img-back" src={`${imgUrl}storage/app/public/product/${productdata.images[0]}`} alt="hello" />
                                                                                     <img className="card-img-top card-img-front" src={`${imgUrl}storage/app/public/product/thumbnail/${productdata.thumbnail}`} alt="hello" />
-                                                                                    <div style={{ zIndex: `9999`, marginTop: `-138px`, marginLeft: `80px` }}>
+                                                                                    <div style={{ zIndex: `9999`, marginTop: `-138px`, marginLeft: `46px` }}>
                                                                                         <BiCaretRightCircle size={70} />
                                                                                     </div>
 

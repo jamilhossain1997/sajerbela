@@ -66,12 +66,12 @@ class Header extends Component {
     GetCartItems() {
         return JSON.parse(localStorage.getItem("CartProduct"));
     }
-    // RemoveItem = (Index) => {
-    //     var CartValue = JSON.parse(localStorage.getItem("CartProduct"));
-    //     CartValue = CartValue.slice(0, Index).concat(CartValue.slice(Index + 1, CartValue.length));
-    //     localStorage.removeItem("CartProduct");
-    //     localStorage.setItem("CartProduct", JSON.stringify(CartValue));
-    // }
+    RemoveItem = (Index) => {
+        var CartValue = JSON.parse(localStorage.getItem("CartProduct"));
+        CartValue = CartValue.slice(0, Index).concat(CartValue.slice(Index + 1, CartValue.length));
+        localStorage.removeItem("CartProduct");
+        localStorage.setItem("CartProduct", JSON.stringify(CartValue));
+    }
 
 
 
@@ -164,7 +164,7 @@ class Header extends Component {
                                                             <NavLink tag={Link} to="/discontproduct" style={{ textTransform: `uppercase` }}>Discount Product</NavLink>
                                                         </NavItem>
                                                         <NavItem>
-                                                            <NavLink tag={Link} to="/catgory/530" style={{ textTransform: `uppercase` }}>Video Shopping</NavLink>
+                                                            <NavLink tag={Link} to="category/slug:video-shopping" style={{ textTransform: `uppercase` }}>Video Shopping</NavLink>
                                                         </NavItem>
                                                         <NavItem>
                                                             <UncontrolledDropdown nav inNavbar >

@@ -10,8 +10,6 @@ import singup from './pages/account/singup';
 import forgotpassword from './pages/account/forgot-password';
 import pagenotfound from './pages/common/page-not-found';
 import leftsidebar from './pages/shop/layout/grid/leftsidebar';
-// import { getProducts } from './actions';
-// import { connect } from 'react-redux';
 import nosidebar from './pages/shop/layout/grid/nosidebar';
 import fullsidebar from './pages/shop/layout/grid/fullsidebar';
 import ordercomplate from './pages/shop/ordercomplate';
@@ -36,7 +34,7 @@ import privacyPolicy from './pages/common/privacy-policy';
 import ReactPixel from 'react-facebook-pixel';
 import LandPages from './pages/LandingPages/index';
 
-import CustomerChat from './pages/account/CustomerChat';
+// import CustomerChat from './pages/account/CustomerChat';
 // import FacebookPixel from './pages/account/FacebookPixel';
 
 class App extends React.Component {
@@ -51,10 +49,7 @@ class App extends React.Component {
     ReactPixel.init('546759807631140');
     ReactPixel.pageView(); // For tracking page view
   }
-  // getUrl(pathname) {
-  //   let pathArray = pathname.split('/');
-  //   return `/${pathArray[1]}` === '/coming-soon' ? true : `/${pathArray[1]}` === '/page-not-found' ? true : false;
-  // }
+
   render() {
     // const { location } = this.props;
     return (
